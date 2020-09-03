@@ -1,82 +1,79 @@
-; â€œAâ€â€”â€”â€œ+â€
-; â€œBâ€â€”â€”â€œ-â€
-; â€œCâ€â€”â€”â€œ*â€ 
-; â€œDâ€â€”â€”â€œæ‹¬å·â€ 
-; â€œEâ€â€”â€”â€œ=â€ 
-; â€œFâ€â€”â€”å¼€å§‹è¿ç®—ï¼ˆåŒ…æ‹¬æ’¤æ¶ˆè¿ç®—ï¼‰ï¼Œå±å¹•æ˜¾ç¤ºâ€œ0â€ã€‚
+; ¡°A¡±¡ª¡ª¡°+¡±
+; ¡°B¡±¡ª¡ª¡°-¡±
+; ¡°C¡±¡ª¡ª¡°*¡± 
+; ¡°D¡±¡ª¡ª¡°À¨ºÅ¡± 
+; ¡°E¡±¡ª¡ª¡°=¡± 
+; ¡°F¡±¡ª¡ª ¿ªÊ¼ÔËËã£¨°üÀ¨³·ÏûÔËËã£©£¬ÆÁÄ»ÏÔÊ¾ ¡°0¡±¡£
 ;
-; è¿ç®—è¦æ±‚ï¼š 
-;     â‘´ è¾“å…¥å¾…è®¡ç®—æ•°æ®ï¼ˆå°äºå››ä½æ•°ï¼‰ï¼Œæ•°ç ç®¡è·Ÿéšæ˜¾ç¤ºã€‚ 
-;     â‘µ æŒ‰â€œ+â€ã€â€œ-â€ã€â€œ*â€æˆ–â€œæ‹¬å·â€æ—¶ï¼Œå½“å‰æ˜¾ç¤ºå†…å®¹ä¸å˜ã€‚ 
-;     â‘¶ å†è¾“å…¥æ•°æ®æ—¶ï¼Œæ•°ç ç®¡è·Ÿéšæ˜¾ç¤ºã€‚ 
-;     â‘· æŒ‰â€œEâ€æ—¶ï¼Œæ˜¾ç¤ºæœ€ç»ˆç»“æœæ•°æ®ã€‚è‹¥è®¡ç®—ç»“æœä¸ºå¥‡æ•°ï¼Œåˆ™ç‚¹äº®1ä¸ªçº¢è‰²å‘å…‰äºŒæç®¡ï¼Œå¹¶æŒç»­ä»¥1ç§’é—´
-;     éš”ï¼ˆç¡¬ä»¶å®ç°ï¼‰é—ªçƒï¼›è‹¥è®¡ç®—ç»“æœä¸ºå¶æ•°ï¼Œåˆ™ç‚¹äº®2ä¸ªç»¿è‰²å‘å…‰äºŒæç®¡ï¼Œå¹¶æŒç»­ä»¥2ç§’é—´éš”ï¼ˆç¡¬ä»¶å®ç°ï¼‰é—ª
-;     çƒã€‚ 
-;     â‘¸ æŒ‰â€œFâ€é”®ï¼šå·¦ä¾§å››ä¸ªæ•°ç ç®¡ä¸­æœ€å³è¾¹ï¼ˆå¯¹åº”ä¸ªä½æ•°ï¼‰çš„ä¸€ä¸ªæ˜¾ç¤ºâ€œ0â€ï¼Œå…¶ä½™ä¸‰ä¸ªä¸æ˜¾ç¤ºå†…å®¹ã€‚
-;     åŒæ—¶ç†„ç­ç‚¹äº®çš„å‘å…‰äºŒæç®¡ï¼Œç­‰å¾…ä¸‹ä¸€æ¬¡è¿ç®—çš„å¼€å§‹ã€‚ 
-;     â‘¹ éœ€è¦è€ƒè™‘è¿ç®—çš„ä¼˜å…ˆçº§é—®é¢˜ã€‚ 
-;     â‘º å¯ä»¥åªè€ƒè™‘æ­£æ•´æ•°è¿ç®—ï¼Œä¸è€ƒè™‘è´Ÿæ•°å’Œå®æ•°è¿ç®—ã€‚æ‹¬å·å¯ä»¥ä¸è€ƒè™‘åµŒå¥—æƒ…å†µï¼Œä½†å¿…é¡»èƒ½å®ç°ç®—å¼
-;     ä¸­å­˜åœ¨å¤šç»„å¹³è¡Œæ‹¬å·çš„è®¡ç®—ã€‚
+; ÔËËãÒªÇó£º 
+;     ¢Å ÊäÈë´ı¼ÆËãÊı¾İ£¨Ğ¡ÓÚËÄÎ»Êı£©£¬ÊıÂë¹Ü¸úËæÏÔÊ¾¡£ 
+;     ¢Æ °´ ¡°+¡±¡¢¡°-¡±¡¢¡°*¡± »ò ¡°À¨ºÅ¡± Ê±£¬µ±Ç°ÏÔÊ¾ÄÚÈİ²»±ä¡£ 
+;     ¢Ç ÔÙÊäÈëÊı¾İÊ±£¬ÊıÂë¹Ü¸úËæÏÔÊ¾¡£ 
+;     ¢È °´ ¡°E¡± Ê±£¬ÏÔÊ¾×îÖÕ½á¹ûÊı¾İ¡£Èô¼ÆËã½á¹ûÎªÆæÊı£¬ÔòµãÁÁ 1 ¸öºìÉ«·¢¹â¶ş¼«¹Ü£¬²¢³ÖĞøÒÔ 1 Ãë¼ä
+;     ¸ô£¨Ó²¼şÊµÏÖ£©ÉÁË¸£»Èô¼ÆËã½á¹ûÎªÅ¼Êı£¬ÔòµãÁÁ 2 ¸öÂÌÉ«·¢¹â¶ş¼«¹Ü£¬²¢³ÖĞøÒÔ 2 Ãë¼ä¸ô£¨Ó²¼şÊµÏÖ£©ÉÁ
+;     Ë¸¡£ 
+;     ¢É °´ ¡°F¡± ¼ü£º×ó²àËÄ¸öÊıÂë¹ÜÖĞ×îÓÒ±ß£¨¶ÔÓ¦¸öÎ»Êı£©µÄÒ»¸öÏÔÊ¾ ¡°0¡±£¬ÆäÓàÈı¸ö²»ÏÔÊ¾ÄÚÈİ¡£
+;     Í¬Ê±Ï¨ÃğµãÁÁµÄ·¢¹â¶ş¼«¹Ü£¬µÈ´ıÏÂÒ»´ÎÔËËãµÄ¿ªÊ¼¡£ 
+;     ¢Ê ĞèÒª¿¼ÂÇÔËËãµÄÓÅÏÈ¼¶ÎÊÌâ¡£ 
+;     ¢Ë ¿ÉÒÔÖ»¿¼ÂÇÕıÕûÊıÔËËã£¬²»¿¼ÂÇ¸ºÊıºÍÊµÊıÔËËã¡£À¨ºÅ¿ÉÒÔ²»¿¼ÂÇÇ¶Ì×Çé¿ö£¬µ«±ØĞëÄÜÊµÏÖËãÊ½
+ ;     ÖĞ´æÔÚ¶à×éÆ½ĞĞÀ¨ºÅµÄ¼ÆËã¡£
 ;
-; è®¾è®¡è¯´æ˜ï¼š 
-;     è¾“å…¥æ•°æ®æ—¶ï¼Œè‹¥è¶…å‡ºæ˜¾ç¤ºèŒƒå›´åˆ™ä¸å“åº”è¶…å‡ºéƒ¨åˆ†ã€‚åœ¨è®¡ç®—ç»“æœè¶…å‡ºæ˜¾ç¤ºèŒƒå›´æ—¶ï¼Œåˆ™æ˜¾ç¤ºâ€œFâ€ã€‚
-
+; Éè¼ÆËµÃ÷£º 
+;     ÊäÈëÊı¾İÊ±£¬Èô³¬³öÏÔÊ¾·¶Î§Ôò²»ÏìÓ¦³¬³ö²¿·Ö¡£ÔÚ¼ÆËã½á¹û³¬³öÏÔÊ¾·¶Î§Ê±£¬ÔòÏÔÊ¾ ¡°F¡±¡£
 
 code    segment
         assume cs:code
 
 org  1000h
 
-; ä¸­æ–­æ§åˆ¶å™¨ 8259
-; 8259åªå¤„ç†æ¥è‡ª8253çš„è®¡æ—¶ä¸­æ–­
-port59_0    equ 0ffe4h
-port59_1    equ 0ffe5h
-icw1        equ 13H         ; è¾¹æ²¿è§¦å‘
-icw2        equ 08h         ; ä¸­æ–­ç±»å‹å· 08H 09H ...
-icw4        equ 09h         ; å…¨åµŒå¥—ï¼Œéç¼“å†²ï¼Œéè‡ªåŠ¨EOIï¼Œ8086/88æ¨¡å¼
-ocw1open    equ 07fh        ; IRQ7ï¼Œç±»å‹å·ä¸º0fhï¼Œå‘é‡åœ°å€åç§»åœ°å€3chï¼Œæ®µåœ°å€0ï¼Œå‚è€ƒç¤ºä¾‹ç¬¬13è¡Œ
-ocw1down    equ 0ffh
+    ; ÖĞ¶Ï¿ØÖÆÆ÷ 8259
+    ; 8259Ö»´¦ÀíÀ´×Ô8253µÄ¼ÆÊ±ÖĞ¶Ï
+    port59_0    equ 0ffe4h
+    port59_1    equ 0ffe5h
+    icw1        equ 13H         ; ±ßÑØ´¥·¢
+    icw2        equ 08h         ; ÖĞ¶ÏÀàĞÍºÅ 08H 09H ...
+    icw4        equ 09h         ; È«Ç¶Ì×£¬·Ç»º³å£¬·Ç×Ô¶¯EOI£¬8086/88Ä£Ê½
+    ocw1open    equ 07fh        ; IRQ7£¬ÀàĞÍºÅÎª0fh£¬ÏòÁ¿µØÖ·Æ«ÒÆµØÖ·3ch£¬¶ÎµØÖ·0£¬²Î¿¼Ê¾ÀıµÚ13ĞĞ
+    ocw1down    equ 0ffh        ; TODO ÊÇ·ñĞèÒª
 
-; å¹¶è¡Œæ¥å£èŠ¯ç‰‡ 8255
-; 8255å‘ledç¯è¾“å‡ºledçŠ¶æ€
-port55_a    equ 0ffd8H
-port55_ctrl equ 0ffdBH
+    ; ²¢ĞĞ½Ó¿ÚĞ¾Æ¬ 8255
+    ; 8255ÏòledµÆÊä³öled×´Ì¬
+    port55_a    equ 0ffd8H
+    port55_ctrl equ 0ffdBH
 
-
-
-; è®¡æ•°å®šæ—¶èŠ¯ç‰‡ 8253
-port53_0    equ 0ffe0H
-port53_ctrl equ 0ffe3H      ; æ§åˆ¶å£
-count_1sec  equ 19200       ; 1sè®¡æ•°æ¬¡æ•°
-count_2sec  equ 38400       ; 2sè®¡æ•°æ¬¡æ•°
+    ; ¼ÆÊı¶¨Ê±Ğ¾Æ¬ 8253
+    port53_0    equ 0ffe0H
+    port53_ctrl equ 0ffe3H      ; ¿ØÖÆ¿Ú
+    count_1sec  equ 19200       ; 1s¼ÆÊı´ÎÊı
+    count_2sec  equ 38400       ; 2s¼ÆÊı´ÎÊı
 
 
-led_status              db 6 dup(?)
-led_count               db 0
-current_key             db 20h
-has_previous_bracket    db 0
-same_as_pre             db 0
+    led_status              db 6 dup(?)
+    led_count               db 0
+    previous_key            db 20h
+    current_key             db 20h
+    has_previous_bracket    db 0
+    same_as_pre             db 0
 
-operand_stack_base      db ? ;TODO
-operator_stack_base     db ? ;TODO
-operand_stack_ptr       db ? ;TODO
-operator_stack_ptr      db ? ;TODO
-operator_stack_top      db ?
-operator_next           db '#'
+    operand_stack           db 0ffh, 100 dup(?)
+    operator_stack          dw 0ffffh, 100 dup(?)
+    operator_stack_top      db ?    ; TODO ÊÇ·ñĞèÒª
+    operator_next           db '#'  ; TODO ÊÇ·ñĞèÒª
 
-result                  db 0
-led_overflow            db 0
-error                   db 0
+    current_num             dw 0
+    result                  dw 0
+    led_overflow            db 0
+    error                   db 0
 
-OUTSEG  equ  0ffdch             ;æ®µæ§åˆ¶å£
-OUTBIT  equ  0ffddh             ;ä½æ§åˆ¶å£/é”®æ‰«å£
-IN_KEY  equ  0ffdeh             ;é”®ç›˜è¯»å…¥å£
-;å…«æ®µç®¡æ˜¾ç¤ºç 
-LedMap  db   0c0h,0f9h,0a4h,0b0h,099h,092h,082h,0f8h
-        db   080h,090h,088h,083h,0c6h,0a1h,086h,08eh
-;é”®ç å®šä¹‰
-KeyTable db   07h,04h,08h,05h,09h,06h,0ah,0bh
-         db   01h,00h,02h,0fh,03h,0eh,0ch,0dh
+    OUTSEG  equ  0ffdch             ;¶Î¿ØÖÆ¿Ú
+    OUTBIT  equ  0ffddh             ;Î»¿ØÖÆ¿Ú/¼üÉ¨¿Ú
+    IN_KEY  equ  0ffdeh             ;¼üÅÌ¶ÁÈë¿Ú
+    ;°Ë¶Î¹ÜÏÔÊ¾Âë
+    LedMap  db   0c0h,0f9h,0a4h,0b0h,099h,092h,082h,0f8h
+            db   080h,090h,088h,083h,0c6h,0a1h,086h,08eh
+    ;¼üÂë¶¨Òå
+    KeyTable db   07h,04h,08h,05h,09h,06h,0ah,0bh
+            db   01h,00h,02h,0fh,03h,0eh,0ch,0dh
 
 
 ; start
@@ -113,7 +110,7 @@ init8259 proc
         out dx, al
         mov al, icw4
         out dx, al
-        mov al, ocw1down
+        mov al, ocw1open
         out dx, al
         pop dx
         pop ax
@@ -140,7 +137,7 @@ init8253 proc
         push dx
         push ax
         mov dx, port53_ctrl
-        mov al, 30H; è®¡æ•°å™¨0ï¼Œå…ˆä½8ä½ï¼Œå†é«˜8ä½ï¼Œæ–¹å¼0ï¼ŒäºŒè¿›åˆ¶è®¡æ•°
+        mov al, 30H; è®¡æ•°å™?0ï¼Œå…ˆä½?8ä½ï¼Œå†é«˜8ä½ï¼Œæ–¹å¼0ï¼ŒäºŒè¿›åˆ¶è®¡æ•°
         out dx, al
         pop ax
         pop dx
@@ -160,17 +157,21 @@ clean_all endp
 
 
 clean_led proc
-        ; TODO æœ€åä¸€ä½æ˜¾ç¤º0ï¼Œå…¶ä½™ä¸æ˜¾ç¤º
+        ; TODO æœ€åä¸€ä½æ˜¾ç¤?0ï¼Œå…¶ä½™ä¸æ˜¾ç¤º
 clean_led endp
 
 
-get_key proc                    ;é”®æ‰«å­ç¨‹åº
+get_key proc                    ;é”?æ‰?å­ç¨‹åº?
     ; store key in current_key
         push ax
         push bx
         push cx
         push dx
-        mov  al,0ffh            ;å…³æ˜¾ç¤ºå£
+
+        mov al, current_key     ;ÉÏÒ»´ÎÉ¨ÃèµÄ·ûºÅ
+        mov previous_key, al
+
+        mov  al,0ffh            ;¹ØÏÔÊ¾¿Ú
         mov  dx,OUTSEG
         out  dx,al
         mov  bl,0
@@ -199,6 +200,11 @@ get_key proc                    ;é”®æ‰«å­ç¨‹åº
         loop key1
     nkey:   
         mov  al,20h
+        mov current_key, al
+        pop dx
+        pop cx
+        pop bx
+        pop ax
         ret
     key2:   
         test al,1
@@ -226,7 +232,6 @@ get_key proc                    ;é”®æ‰«å­ç¨‹åº
         mov  bx,offset KeyTable
         xlat
     fkey:   
-        and al, 0fh
         mov current_key, al
         pop dx
         pop cx
@@ -278,11 +283,29 @@ handle_key proc
         ret
 handle_key endp
 
-
+is_same_as_pre proc
+    ;¸øsame_as_pre¸³Öµ
+    push ax
+    mov al, current_key
+    cmp al, previous_key
+    je is_same
+    mov same_as_pre, 0
+    jmp return
+is_same: 
+    mov same_as_pre, 1
+return:    
+    pop ax
+    ret
+is_same_as_pre endp
 
 
 
 handle_number proc
+    ; Èç¹û led_count < 4
+    ;   current_num = current_num * 10 + current_key
+    ;   led_count += 1
+    ; ·ñÔò
+    ;   call do_nothing
 handle_number endp
 
 handle_error proc
@@ -305,3 +328,12 @@ handle_e endp
 
 handle_f proc
 handle_f endp
+
+
+cal_one_op proc
+
+cal_one_op endp
+
+
+push_stack proc
+push_stack endp
