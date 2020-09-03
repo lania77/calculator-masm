@@ -27,9 +27,24 @@ code    segment
 org  1000h
 
     ; 中断向量地址 = 中断类型号 * 4
+
     ; 执行中断 : 从中断向量表中取出中断服务程序的入口地址 -> 送入 cs IP -> 执行中断服务程序
     ; 在 中断服务程序 中, 1.保护现场(相关寄存器) -> 中断服务程序 -> 恢复现场
-    
+
+    ; 中断请求信号 通过 中断控制器8259 向 8086 发出INTR 中断请求
+    ; 中断允许标志 IF = 1 CPU执行完当前指令后响应中断
+
+    ; sure 中断向量地址
+        ;中断响应后 执行2个两个连续的 中断响应总线周期 to get 中断类型号
+            ; 1st 总线周期 : CPU 发出一负脉冲信号, 请求中断的外部中断系统(8259A) -> 准备好中断类型号
+            ; 2nd 总线周期 : CPU 再发出一负脉冲信号, 8259A 接收到后, 将 中断类型号 送至 数据总线低八位
+
+
+    ; 中断向量 : 中断服务程序的入口地址 -- 4字节 -- 前两字节IP 后两字节CS
+    ; 中断向量表 : 用来存放中断向量的一块内存区域
+    ; 中断向量地址 : 中断向量在中断向量表中的存放地址
+
+
     ; 中断控制器 8259
     ; 8259只处理来自8253的计时中断
     port59_0    equ 0ffe4h
@@ -47,6 +62,9 @@ org  1000h
     ; icw4 A0 = 1 写入奇地址 (大地址)
     icw4        equ 09h         ; (000)-(ICW4标志位) 0-全嵌套 10-缓冲方式/从片   0-非自动EOI 1-8086/88模式
 
+    ; ocw1 操作命令字 -> IMR
+    ; A0 = 1 写入奇地址 (大地址)
+    ; 0000 0111 
     ocw1open    equ 07fh        ; IRQ7，类型号为0fh，向量地址偏移地址3ch，段地址0，参考示例第13行
     ocw1down    equ 0ffh        ; TODO 是否需要
 
@@ -123,24 +141,31 @@ init_all proc
         ret
 init_all endp
 
+; 中断子程序的装载 
+; ?
 
 init8259 proc
-        push ax
-        push dx
-        mov dx, port59_0
-        mov al, icw1
-        out dx, al
-        mov dx, port59_1
-        mov al, icw2
-        mov dx, port59_1
-        out dx, al
-        mov al, icw4
-        out dx, al
-        mov al, ocw1open
-        out dx, al
-        pop dx
-        pop ax
-        ret
+    push ax
+    push dx
+
+    mov dx, port59_0
+    mov al, icw1
+    out dx, al
+
+    mov dx, port59_1
+    mov al, icw2
+    ; mov dx, port59_1
+    out dx, al
+
+    mov al, icw4
+    out dx, al
+
+    mov al, ocw1open
+    out dx, al
+
+    pop dx
+    pop ax
+    ret
 init8259 endp
 
 
