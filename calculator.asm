@@ -154,7 +154,6 @@ init8259 proc
 
     mov dx, port59_1
     mov al, icw2
-    ; mov dx, port59_1
     out dx, al
 
     mov al, icw4
@@ -172,12 +171,16 @@ init8259 endp
 init8255 proc
         push ax
         push dx
+
         mov dx, port55_ctrl
-        mov al, 88H
+        mov al, 88H ; 1(方式选择控制字)00(方式0)0(A口I/O: 出) 1(C口高位:入)0(B口方式0)0(B口I/O: 出)0(C口低位:出) 
         out dx, al
+
         mov al, lightOff
+        ; TODO
         mov dx, port55_a
         out dx, al
+
         pop dx
         pop ax
         ret
@@ -185,11 +188,18 @@ init8255 endp
 
 
 init8253 proc
+        ; 8253的初始化
+        ; 先写控制字，再送计数初值
+        ; 对于16位初值，需要先送低8位，再送高8位。 
         push dx
         push ax
+
         mov dx, port53_ctrl
-        mov al, 30H; 璁℃暟鍣?0锛屽厛浣?8浣嶏紝鍐嶉珮8浣嶏紝鏂瑰紡0锛屼簩杩涘埗璁℃暟
+        mov al, 30H ; 00(计数器0)11(先低8位再高8位) 000(方式 0) 0(二进制计数)
         out dx, al
+
+        ; TODO
+
         pop ax
         pop dx
         ret
@@ -217,15 +227,15 @@ clean_led proc
 clean_led endp
 
 
-get_key proc                    ;閿?鎵?瀛愮▼搴?
+get_key proc    ; 键扫子程序
     ; store key in current_key
         push ax
         push bx
         push cx
         push dx
 
-        mov al, current_key     ;上一次扫描的符号
-        mov previous_key, al
+        mov al, current_key     ; 上一次扫描的符号 ;current_key 初始为 20H
+        mov previous_key, al    ; 
 
         mov  al,0ffh            ;关显示口
         mov  dx,OUTSEG
