@@ -26,13 +26,27 @@ code    segment
 
 org  1000h
 
+    ; 中断向量地址 = 中断类型号 * 4
+    ; 执行中断 : 从中断向量表中取出中断服务程序的入口地址 -> 送入 cs IP -> 执行中断服务程序
+    ; 在 中断服务程序 中, 1.保护现场(相关寄存器) -> 中断服务程序 -> 恢复现场
+    
     ; 中断控制器 8259
     ; 8259只处理来自8253的计时中断
     port59_0    equ 0ffe4h
-    port59_1    equ 0ffe5h
-    icw1        equ 13H         ; 边沿触发
-    icw2        equ 08h         ; 中断类型号 08H 09H ...
-    icw4        equ 09h         ; 全嵌套，非缓冲，非自动EOI，8086/88模式
+    port59_1    equ 0ffe5h  ; ? 
+    ; 芯片控制初始化 icw1
+    ; icw1 A0 = 0 写入偶地址 (小地址)
+    icw1        equ 13H         ; 000  1(icw1标志)   0(边沿)    0   1(单片8259 )   1(需要icw4)  边沿触发
+    
+    ; icw2 中断类型初始化
+    ; A0 = 1 写入奇地址 (大地址)
+    icw2        equ 08h         ; 00001-中断类型号的高五位 中断类型号 08H 09H ... 0FH
+
+    ; 什么时候需要方式控制字 ? 
+    ; 方式控制字 
+    ; icw4 A0 = 1 写入奇地址 (大地址)
+    icw4        equ 09h         ; (000)-(ICW4标志位) 0-全嵌套 10-缓冲方式/从片   0-非自动EOI 1-8086/88模式
+
     ocw1open    equ 07fh        ; IRQ7，类型号为0fh，向量地址偏移地址3ch，段地址0，参考示例第13行
     ocw1down    equ 0ffh        ; TODO 是否需要
 
@@ -48,17 +62,15 @@ org  1000h
     count_2sec  equ 38400       ; 2s计数次数
 
 
-    led_status              db 6 dup(?)
+    ledbuf                  db 6 dup(?)
     led_count               db 0
     previous_key            db 20h
     current_key             db 20h
     has_previous_bracket    db 0
     same_as_pre             db 0
 
-    operand_stack           db 0ffh, 100 dup(?)
-    operator_stack          dw 0ffffh, 100 dup(?)
-    operator_stack_top      db ?    ; TODO 是否需要
-    operator_next           db '#'  ; TODO 是否需要
+    operator_stack          db '#', 100 dup(?)      ; si
+    operand_stack           dw 0ffffh, 100 dup(?)   ; di
 
     current_num             dw 0
     result                  dw 0
@@ -76,13 +88,18 @@ org  1000h
             db   01h,00h,02h,0fh,03h,0eh,0ch,0dh
 
 
-; start
+start:
     cli
     call init_all
 main:
     sti
     call get_key
+    cmp current_key, 20h
+    je handle
+    and  al,0fh
+    handle:
     call handle_key
+    call disp
     jmp main
 ; end
 
@@ -94,6 +111,15 @@ init_all proc
         call init8253
         call init_stack
         call clean_led
+        mov previous_key, 20h
+        mov current_key, 20h
+        mov led_count, 0
+        mov has_previous_bracket, 0
+        mov same_as_pre, 0
+        mov current_num, 0
+        mov result, 0
+        mov led_overflow, 0
+        mov error, 0
         ret
 init_all endp
 
@@ -146,8 +172,8 @@ init8253 endp
 
 
 init_stack proc
-        ; TODO init operand stack
-        ; TODO init operator stack
+        mov si, 0
+        mov di, 0
 init_stack endp
 
 
@@ -157,7 +183,12 @@ clean_all endp
 
 
 clean_led proc
-        ; TODO 鏈�鍚庝竴浣嶆樉绀?0锛屽叾浣欎笉鏄剧ず
+        mov  LedBuf+0,0ffh
+        mov  LedBuf+1,0ffh
+        mov  LedBuf+2,0ffh
+        mov  LedBuf+3,0c0h
+        mov  LedBuf+4,0ffh
+        mov  LedBuf+6,0ffh
 clean_led endp
 
 
@@ -242,44 +273,58 @@ get_key endp
 
 
 handle_key proc
+        push ax
         call is_same_as_pre
+        mov al, current_key
         cmp same_as_pre, 1
         jne handle_key_continue
-        call do_nothing ; TODO
+        pop ax
         ret
     handle_key_continue:
         cmp al, 10
         jnb handle_key_a
         call handle_number
+        pop ax
         ret
     handle_key_a:
         cmp al, 0ah
         jne handle_key_b
         call handle_a
+        pop ax
         ret
     handle_key_b:
         cmp al, 0bh
         jne handle_key_c
         call handle_b
+        pop ax
         ret
     handle_key_c:
         cmp al, 0ch
         jne handle_key_d
         call handle_c
+        pop ax
         ret
     handle_key_d:
         cmp al, 0dh
         jne handle_key_e
         call handle_d
+        pop ax
         ret
     handle_key_e:
         cmp al, 0eh
         jne handle_key_f
-        call handle_a
+        call handle_e
+        pop ax
         ret
     handle_key_f:
         cmp al, 0fh
+        jne key_error
+        call handle_f
+        jmp handle_key_f_ret
+        key_error:
         call handle_error
+        handle_key_f_ret:
+        pop ax
         ret
 handle_key endp
 
@@ -306,9 +351,35 @@ handle_number proc
     ;   led_count += 1
     ; 否则
     ;   call do_nothing
+    ; 当输入数字以外的符号的时候需要把led_count清空
+    push ax
+    push bx
+    push dx
+    cmp led_count, 4
+    jae handle_number_ret
+    mov ax, current_num
+    mov bx, 10
+    mul bx
+    mov bl, current_key
+    mov bh, 0
+    add ax, bx               
+    mov current_num, ax          ;current_num = current_num * 10 + current_key
+    inc led_count
+    handle_number_ret:
+    call set_led_num
+    pop dx
+    pop bx
+    pop ax
+    ret
 handle_number endp
 
 handle_error proc
+    ;处理get_key得到的字符不是数字和符号的情况，包含current_key=20h
+    cmp current_key, 20h
+    je handle_error_ret
+    TODO ;处理其它的符号
+    handle_error_ret:
+    ret
 handle_error endp
 
 handle_a proc
@@ -337,3 +408,83 @@ cal_one_op endp
 
 push_stack proc
 push_stack endp
+
+
+set_led_num proc
+    ; 只在handle_number里面调用，
+    ; 此时led_count = 已输入的数字位数
+    ; led_count - 1 = 已显示的数字位数
+        push ax
+        push bx
+        push dx
+        push di
+        mov di, 3
+        mov ax, current_number
+        mov dx, 0
+    ax_not_zero:
+        mov dx, 0
+        mov bx, 10
+        div bx
+        mov bl, ledmap[dx]
+        mov ledbuf[di], bl
+        dec di
+        cmp ax, 0
+        jne ax_not_zero
+    fill_empty:
+        cmp di, 0    
+        jb set_led_num_ret
+        mov ledbuf[di], 0ffh
+        dec di
+        jmp fill_empty
+    set_led_num_ret:
+        pop di
+        pop dx
+        pop bx
+        pop ax
+        ret
+set_led_num endp
+
+
+
+disp proc
+        mov  bx,offset LEDBuf
+        mov  cl,6               ;共6个八段管
+        mov  ah,00100000b       ;从左边开始显示
+    DLoop:
+        mov  dx,OUTBIT
+        mov  al,0
+        out  dx,al              ;关所有八段管
+        mov  al,[bx]
+        mov  dx,OUTSEG
+        out  dx,al
+
+        mov  dx,OUTBIT
+        mov  al,ah
+        out  dx,al              ;显示一位八段管
+
+        push ax
+        mov  ah,1
+        call Delay
+        pop  ax
+
+        shr  ah,1
+        inc  bx
+        dec  cl
+        jnz  DLoop
+
+        mov  dx,OUTBIT
+        mov  al,0
+        out  dx,al              ;关所有八段管
+        ret
+disp endp
+
+delay proc                         ;延时子程序
+        push  cx
+        mov   cx,256
+        loop  $
+        pop   cx
+        ret
+delay endp
+
+code    ends
+        end start
