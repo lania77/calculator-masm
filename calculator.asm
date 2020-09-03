@@ -234,14 +234,16 @@ get_key proc    ; 键扫子程序
         push cx
         push dx
 
-        mov al, current_key     ; 上一次扫描的符号 ;current_key 初始为 20H
+        mov al, current_key     ; 上一次扫描的符号   current_key 初始为 20H
         mov previous_key, al    ; 
 
         mov  al,0ffh            ;关显示口
         mov  dx,OUTSEG
         out  dx,al
+
+        ; TODO ???
         mov  bl,0
-        mov  ah,0feh
+        mov  ah,0feh ;1111 1110
         mov  cx,8
     key1:   
         mov  al,ah
