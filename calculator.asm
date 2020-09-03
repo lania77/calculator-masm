@@ -1,25 +1,25 @@
-; ¡°A¡±¡ª¡ª¡°+¡±
-; ¡°B¡±¡ª¡ª¡°-¡±
-; ¡°C¡±¡ª¡ª¡°*¡± 
-; ¡°D¡±¡ª¡ª¡°À¨ºÅ¡± 
-; ¡°E¡±¡ª¡ª¡°=¡± 
-; ¡°F¡±¡ª¡ª¿ªÊ¼ÔËËã£¨°üÀ¨³·ÏûÔËËã£©£¬ÆÁÄ»ÏÔÊ¾¡°0¡±¡£
+; â€œAâ€â€”â€”â€œ+â€
+; â€œBâ€â€”â€”â€œ-â€
+; â€œCâ€â€”â€”â€œ*â€ 
+; â€œDâ€â€”â€”â€œæ‹¬å·â€ 
+; â€œEâ€â€”â€”â€œ=â€ 
+; â€œFâ€â€”â€”å¼€å§‹è¿ç®—ï¼ˆåŒ…æ‹¬æ’¤æ¶ˆè¿ç®—ï¼‰ï¼Œå±å¹•æ˜¾ç¤ºâ€œ0â€ã€‚
 ;
-; ÔËËãÒªÇó£º 
-;     ¢Å ÊäÈë´ý¼ÆËãÊý¾Ý£¨Ð¡ÓÚËÄÎ»Êý£©£¬ÊýÂë¹Ü¸úËæÏÔÊ¾¡£ 
-;     ¢Æ °´¡°+¡±¡¢¡°-¡±¡¢¡°*¡±»ò¡°À¨ºÅ¡±Ê±£¬µ±Ç°ÏÔÊ¾ÄÚÈÝ²»±ä¡£ 
-;     ¢Ç ÔÙÊäÈëÊý¾ÝÊ±£¬ÊýÂë¹Ü¸úËæÏÔÊ¾¡£ 
-;     ¢È °´¡°E¡±Ê±£¬ÏÔÊ¾×îÖÕ½á¹ûÊý¾Ý¡£Èô¼ÆËã½á¹ûÎªÆæÊý£¬ÔòµãÁÁ1¸öºìÉ«·¢¹â¶þ¼«¹Ü£¬²¢³ÖÐøÒÔ1Ãë¼ä
-;     ¸ô£¨Ó²¼þÊµÏÖ£©ÉÁË¸£»Èô¼ÆËã½á¹ûÎªÅ¼Êý£¬ÔòµãÁÁ2¸öÂÌÉ«·¢¹â¶þ¼«¹Ü£¬²¢³ÖÐøÒÔ2Ãë¼ä¸ô£¨Ó²¼þÊµÏÖ£©ÉÁ
-;     Ë¸¡£ 
-;     ¢É °´¡°F¡±¼ü£º×ó²àËÄ¸öÊýÂë¹ÜÖÐ×îÓÒ±ß£¨¶ÔÓ¦¸öÎ»Êý£©µÄÒ»¸öÏÔÊ¾¡°0¡±£¬ÆäÓàÈý¸ö²»ÏÔÊ¾ÄÚÈÝ¡£
-;     Í¬Ê±Ï¨ÃðµãÁÁµÄ·¢¹â¶þ¼«¹Ü£¬µÈ´ýÏÂÒ»´ÎÔËËãµÄ¿ªÊ¼¡£ 
-;     ¢Ê ÐèÒª¿¼ÂÇÔËËãµÄÓÅÏÈ¼¶ÎÊÌâ¡£ 
-;     ¢Ë ¿ÉÒÔÖ»¿¼ÂÇÕýÕûÊýÔËËã£¬²»¿¼ÂÇ¸ºÊýºÍÊµÊýÔËËã¡£À¨ºÅ¿ÉÒÔ²»¿¼ÂÇÇ¶Ì×Çé¿ö£¬µ«±ØÐëÄÜÊµÏÖËãÊ½
-;     ÖÐ´æÔÚ¶à×éÆ½ÐÐÀ¨ºÅµÄ¼ÆËã¡£
+; è¿ç®—è¦æ±‚ï¼š 
+;     â‘´ è¾“å…¥å¾…è®¡ç®—æ•°æ®ï¼ˆå°äºŽå››ä½æ•°ï¼‰ï¼Œæ•°ç ç®¡è·Ÿéšæ˜¾ç¤ºã€‚ 
+;     â‘µ æŒ‰â€œ+â€ã€â€œ-â€ã€â€œ*â€æˆ–â€œæ‹¬å·â€æ—¶ï¼Œå½“å‰æ˜¾ç¤ºå†…å®¹ä¸å˜ã€‚ 
+;     â‘¶ å†è¾“å…¥æ•°æ®æ—¶ï¼Œæ•°ç ç®¡è·Ÿéšæ˜¾ç¤ºã€‚ 
+;     â‘· æŒ‰â€œEâ€æ—¶ï¼Œæ˜¾ç¤ºæœ€ç»ˆç»“æžœæ•°æ®ã€‚è‹¥è®¡ç®—ç»“æžœä¸ºå¥‡æ•°ï¼Œåˆ™ç‚¹äº®1ä¸ªçº¢è‰²å‘å…‰äºŒæžç®¡ï¼Œå¹¶æŒç»­ä»¥1ç§’é—´
+;     éš”ï¼ˆç¡¬ä»¶å®žçŽ°ï¼‰é—ªçƒï¼›è‹¥è®¡ç®—ç»“æžœä¸ºå¶æ•°ï¼Œåˆ™ç‚¹äº®2ä¸ªç»¿è‰²å‘å…‰äºŒæžç®¡ï¼Œå¹¶æŒç»­ä»¥2ç§’é—´éš”ï¼ˆç¡¬ä»¶å®žçŽ°ï¼‰é—ª
+;     çƒã€‚ 
+;     â‘¸ æŒ‰â€œFâ€é”®ï¼šå·¦ä¾§å››ä¸ªæ•°ç ç®¡ä¸­æœ€å³è¾¹ï¼ˆå¯¹åº”ä¸ªä½æ•°ï¼‰çš„ä¸€ä¸ªæ˜¾ç¤ºâ€œ0â€ï¼Œå…¶ä½™ä¸‰ä¸ªä¸æ˜¾ç¤ºå†…å®¹ã€‚
+;     åŒæ—¶ç†„ç­ç‚¹äº®çš„å‘å…‰äºŒæžç®¡ï¼Œç­‰å¾…ä¸‹ä¸€æ¬¡è¿ç®—çš„å¼€å§‹ã€‚ 
+;     â‘¹ éœ€è¦è€ƒè™‘è¿ç®—çš„ä¼˜å…ˆçº§é—®é¢˜ã€‚ 
+;     â‘º å¯ä»¥åªè€ƒè™‘æ­£æ•´æ•°è¿ç®—ï¼Œä¸è€ƒè™‘è´Ÿæ•°å’Œå®žæ•°è¿ç®—ã€‚æ‹¬å·å¯ä»¥ä¸è€ƒè™‘åµŒå¥—æƒ…å†µï¼Œä½†å¿…é¡»èƒ½å®žçŽ°ç®—å¼
+;     ä¸­å­˜åœ¨å¤šç»„å¹³è¡Œæ‹¬å·çš„è®¡ç®—ã€‚
 ;
-; Éè¼ÆËµÃ÷£º 
-;     ÊäÈëÊý¾ÝÊ±£¬Èô³¬³öÏÔÊ¾·¶Î§Ôò²»ÏìÓ¦³¬³ö²¿·Ö¡£ÔÚ¼ÆËã½á¹û³¬³öÏÔÊ¾·¶Î§Ê±£¬ÔòÏÔÊ¾¡°F¡±¡£
+; è®¾è®¡è¯´æ˜Žï¼š 
+;     è¾“å…¥æ•°æ®æ—¶ï¼Œè‹¥è¶…å‡ºæ˜¾ç¤ºèŒƒå›´åˆ™ä¸å“åº”è¶…å‡ºéƒ¨åˆ†ã€‚åœ¨è®¡ç®—ç»“æžœè¶…å‡ºæ˜¾ç¤ºèŒƒå›´æ—¶ï¼Œåˆ™æ˜¾ç¤ºâ€œFâ€ã€‚
 
 
 code    segment
@@ -27,26 +27,28 @@ code    segment
 
 org  1000h
 
-; ÖÐ¶Ï¿ØÖÆÆ÷ 8259
-; 8259Ö»´¦ÀíÀ´×Ô8253µÄ¼ÆÊ±ÖÐ¶Ï
+; ä¸­æ–­æŽ§åˆ¶å™¨ 8259
+; 8259åªå¤„ç†æ¥è‡ª8253çš„è®¡æ—¶ä¸­æ–­
 port59_0    equ 0ffe4h
 port59_1    equ 0ffe5h
-icw1        equ 13H         ; ±ßÑØ´¥·¢
-icw2        equ 08h         ; ÖÐ¶ÏÀàÐÍºÅ 08H 09H ...
-icw4        equ 09h         ; È«Ç¶Ì×£¬·Ç»º³å£¬·Ç×Ô¶¯EOI£¬8086/88Ä£Ê½
-ocw1open    equ 07fh        ; IRQ7£¬ÀàÐÍºÅÎª0fh£¬ÏòÁ¿µØÖ·Æ«ÒÆµØÖ·3ch£¬¶ÎµØÖ·0£¬²Î¿¼Ê¾ÀýµÚ13ÐÐ
+icw1        equ 13H         ; è¾¹æ²¿è§¦å‘
+icw2        equ 08h         ; ä¸­æ–­ç±»åž‹å· 08H 09H ...
+icw4        equ 09h         ; å…¨åµŒå¥—ï¼Œéžç¼“å†²ï¼Œéžè‡ªåŠ¨EOIï¼Œ8086/88æ¨¡å¼
+ocw1open    equ 07fh        ; IRQ7ï¼Œç±»åž‹å·ä¸º0fhï¼Œå‘é‡åœ°å€åç§»åœ°å€3chï¼Œæ®µåœ°å€0ï¼Œå‚è€ƒç¤ºä¾‹ç¬¬13è¡Œ
 ocw1down    equ 0ffh
 
-; ²¢ÐÐ½Ó¿ÚÐ¾Æ¬ 8255
-; 8255ÏòledµÆÊä³öled×´Ì¬
+; å¹¶è¡ŒæŽ¥å£èŠ¯ç‰‡ 8255
+; 8255å‘ledç¯è¾“å‡ºledçŠ¶æ€
 port55_a    equ 0ffd8H
 port55_ctrl equ 0ffdBH
 
-; ¼ÆÊý¶¨Ê±Ð¾Æ¬ 8253
+
+
+; è®¡æ•°å®šæ—¶èŠ¯ç‰‡ 8253
 port53_0    equ 0ffe0H
-port53_ctrl equ 0ffe3H      ; ¿ØÖÆ¿Ú
-count_1sec  equ 19200       ; 1s¼ÆÊý´ÎÊý
-count_2sec  equ 38400       ; 2s¼ÆÊý´ÎÊý
+port53_ctrl equ 0ffe3H      ; æŽ§åˆ¶å£
+count_1sec  equ 19200       ; 1sè®¡æ•°æ¬¡æ•°
+count_2sec  equ 38400       ; 2sè®¡æ•°æ¬¡æ•°
 
 
 led_status              db 6 dup(?)
@@ -66,13 +68,13 @@ result                  db 0
 led_overflow            db 0
 error                   db 0
 
-OUTSEG  equ  0ffdch             ;¶Î¿ØÖÆ¿Ú
-OUTBIT  equ  0ffddh             ;Î»¿ØÖÆ¿Ú/¼üÉ¨¿Ú
-IN_KEY  equ  0ffdeh             ;¼üÅÌ¶ÁÈë¿Ú
-;°Ë¶Î¹ÜÏÔÊ¾Âë
+OUTSEG  equ  0ffdch             ;æ®µæŽ§åˆ¶å£
+OUTBIT  equ  0ffddh             ;ä½æŽ§åˆ¶å£/é”®æ‰«å£
+IN_KEY  equ  0ffdeh             ;é”®ç›˜è¯»å…¥å£
+;å…«æ®µç®¡æ˜¾ç¤ºç 
 LedMap  db   0c0h,0f9h,0a4h,0b0h,099h,092h,082h,0f8h
         db   080h,090h,088h,083h,0c6h,0a1h,086h,08eh
-;¼üÂë¶¨Òå
+;é”®ç å®šä¹‰
 KeyTable db   07h,04h,08h,05h,09h,06h,0ah,0bh
          db   01h,00h,02h,0fh,03h,0eh,0ch,0dh
 
@@ -138,7 +140,7 @@ init8253 proc
         push dx
         push ax
         mov dx, port53_ctrl
-        mov al, 30H            ; ¼ÆÊýÆ÷0£¬ÏÈµÍ8Î»£¬ÔÙ¸ß8Î»£¬·½Ê½0£¬¶þ½øÖÆ¼ÆÊý
+        mov al, 30H; è®¡æ•°å™¨0ï¼Œå…ˆä½Ž8ä½ï¼Œå†é«˜8ä½ï¼Œæ–¹å¼0ï¼ŒäºŒè¿›åˆ¶è®¡æ•°
         out dx, al
         pop ax
         pop dx
@@ -158,17 +160,17 @@ clean_all endp
 
 
 clean_led proc
-        ; TODO ×îºóÒ»Î»ÏÔÊ¾0£¬ÆäÓà²»ÏÔÊ¾
+        ; TODO æœ€åŽä¸€ä½æ˜¾ç¤º0ï¼Œå…¶ä½™ä¸æ˜¾ç¤º
 clean_led endp
 
 
-get_key proc                    ;¼üÉ¨×Ó³ÌÐò
+get_key proc                    ;é”®æ‰«å­ç¨‹åº
     ; store key in current_key
         push ax
         push bx
         push cx
         push dx
-        mov  al,0ffh            ;¹ØÏÔÊ¾¿Ú
+        mov  al,0ffh            ;å…³æ˜¾ç¤ºå£
         mov  dx,OUTSEG
         out  dx,al
         mov  bl,0
